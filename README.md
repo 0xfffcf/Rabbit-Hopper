@@ -18,8 +18,7 @@
 
 * ***You will need to change the offsets probably***
 
-**In config/offsets.h replace the offset with the right one.** <br/>
-**Offsets can be found on <a href="https://github.com/frk1/hazedumper/blob/master/csgo.hpphttps://github.com/frk1/hazedumper/blob/master/csgo.hpp">here</a>** <br/>
+**In config/offsets.h replace the <a href="https://github.com/frk1/hazedumper/blob/master/csgo.hpphttps://github.com/frk1/hazedumper/blob/master/csgo.hpp">offset</a> with the right one.** <br/>
 **Compile the code with multi-bytes over unicode.**
 
 <br/>
