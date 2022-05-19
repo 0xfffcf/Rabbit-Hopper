@@ -3,8 +3,11 @@
 #include "config/offsets.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(void) {
+	BOOL isBhopToggle = false;
+
 	modifyUI();
 
 	getProcessInfo("csgo.exe");
@@ -17,15 +20,23 @@ int main(void) {
 		if (localPlayer) {
 			const BOOL isOnGround = read(localPlayer + M_F_FLAGS);
 
-			if (GetAsyncKeyState(VK_SPACE) && isOnGround & (1 << 0)) {
-				write(client + DW_FORCE_JUMP, 5);
-			} else {
-				write(client + DW_FORCE_JUMP, 4);
+			if (!(isOnGround & 1))
+				isBhopToggle = true;
+				
+			if (isBhopToggle) {
+				if (GetAsyncKeyState(VK_SPACE) && isOnGround & 1) {
+					write(client + DW_FORCE_JUMP, 5);
+				} else {
+					write(client + DW_FORCE_JUMP, 4);
+				}
 			}
+
+			if (!GetAsyncKeyState(VK_SPACE) && isOnGround & 1)
+				isBhopToggle = false;
 		}
 		Sleep(10);
 	}
 	CloseHandle(process.hProcess);
-	
+
 	return 0;
 }
